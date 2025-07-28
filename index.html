@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Contact Information</title>
   <style>
     * {
@@ -13,7 +13,7 @@
 
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: #152C89; /* Updated background color */
+      background: #152C89;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -131,42 +131,6 @@
       margin-top: 2px;
     }
 
-    .actions {
-      margin-top: 25px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      flex: 1;
-      min-width: 120px;
-      padding: 12px;
-      border: none;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-      transition: opacity 0.3s;
-    }
-
-    .btn-primary {
-      background: #667eea;
-      color: white;
-    }
-
-    .btn-secondary {
-      background: #f8f9fa;
-      color: #333;
-      border: 1px solid #e1e5e9;
-    }
-
-    .btn:hover {
-      opacity: 0.9;
-    }
-
     .footer {
       margin-top: 20px;
       font-size: 12px;
@@ -197,9 +161,7 @@
 </head>
 <body>
   <div class="card">
-    <div id="contactContent">
-      <!-- Contact content will be loaded here -->
-    </div>
+    <div id="contactContent"></div>
   </div>
 
   <script>
@@ -216,6 +178,13 @@
         end: params.get('end') || '',
         status: params.get('status') || 'false'
       };
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return '';
+      const options = { day: 'numeric', month: 'long', year: 'numeric' };
+      const date = new Date(dateStr);
+      return date.toLocaleDateString(undefined, options);
     }
 
     function displayContact() {
@@ -243,7 +212,6 @@
         <div class="name">${contact.name || 'Contact'}</div>
       `;
 
-      // ✅ Membership Status Badge
       if (contact.status === 'true') {
         html += `<div class="badge badge-active">✅ Active Member</div>`;
       } else {
@@ -310,7 +278,7 @@
             <div class="info-icon">📅</div>
             <div class="info-text">
               <div class="info-label">Membership Start</div>
-              <div class="info-value">${contact.start}</div>
+              <div class="info-value">${formatDate(contact.start)}</div>
             </div>
           </div>
         `;
@@ -322,57 +290,18 @@
             <div class="info-icon">📅</div>
             <div class="info-text">
               <div class="info-label">Membership End</div>
-              <div class="info-value">${contact.end}</div>
+              <div class="info-value">${formatDate(contact.end)}</div>
             </div>
           </div>
         `;
       }
 
-      html += `</div><div class="actions">`;
-
-      if (contact.email) {
-        html += `<a href="mailto:${contact.email}" class="btn btn-primary">Send Email</a>`;
-      }
-
-      if (contact.phone) {
-        html += `<a href="tel:${contact.phone}" class="btn btn-secondary">Call</a>`;
-      }
-
-      html += `<button onclick="downloadVCard()" class="btn btn-secondary">Save Contact</button>`;
-
-      html += `
-        </div>
+      html += `</div>
         <div class="footer">
           Shared via Together Local App
-        </div>
-      `;
+        </div>`;
 
       contentDiv.innerHTML = html;
-    }
-
-    function downloadVCard() {
-      const contact = getUrlParams();
-      let vcard = `BEGIN:VCARD
-VERSION:3.0
-FN:${contact.name}`;
-
-      if (contact.email) vcard += `\nEMAIL:${contact.email}`;
-      if (contact.phone) vcard += `\nTEL:${contact.phone}`;
-      if (contact.org) vcard += `\nORG:${contact.org}`;
-      if (contact.title) vcard += `\nTITLE:${contact.title}`;
-      
-      vcard += `\nNOTE:Contact shared via Together Local App
-END:VCARD`;
-
-      const blob = new Blob([vcard], { type: 'text/vcard' });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${contact.name || 'contact'}.vcf`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
     }
 
     window.addEventListener('load', displayContact);
