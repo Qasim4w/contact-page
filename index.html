@@ -1,332 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Information</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Information</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #152C89; /* Updated background color */
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
 
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-        }
+    .card {
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
 
-        .avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: #667eea;
-            border: 3px solid #667eea;
-            overflow: hidden;
-        }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      background: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      color: #667eea;
+      border: 3px solid #667eea;
+      overflow: hidden;
+    }
 
-        .avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-        .name {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 8px;
-        }
+    .name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 4px;
+    }
 
-        .email {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
+    .badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
 
-        .info {
-            text-align: left;
-            margin: 20px 0;
-        }
+    .badge-active {
+      background-color: #28a745;
+      color: white;
+    }
 
-        .info-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
+    .badge-inactive {
+      background-color: #dc3545;
+      color: white;
+    }
 
-        .info-item:last-child {
-            border-bottom: none;
-        }
+    .email {
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 20px;
+    }
 
-        .info-icon {
-            width: 35px;
-            height: 35px;
-            background: #667eea;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            color: white;
-            font-size: 16px;
-        }
+    .info {
+      text-align: left;
+      margin: 20px 0;
+    }
 
-        .info-text {
-            flex: 1;
-        }
+    .info-item {
+      display: flex;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
 
-        .info-label {
-            font-size: 12px;
-            color: #999;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+    .info-item:last-child {
+      border-bottom: none;
+    }
 
-        .info-value {
-            font-size: 14px;
-            color: #333;
-            font-weight: 500;
-            margin-top: 2px;
-        }
+    .info-icon {
+      width: 35px;
+      height: 35px;
+      background: #667eea;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 15px;
+      color: white;
+      font-size: 16px;
+    }
 
-        .actions {
-            margin-top: 25px;
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
+    .info-text {
+      flex: 1;
+    }
 
-        .btn {
-            flex: 1;
-            min-width: 120px;
-            padding: 12px;
-            border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            transition: opacity 0.3s;
-        }
+    .info-label {
+      font-size: 12px;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
 
-        .btn-primary {
-            background: #667eea;
-            color: white;
-        }
+    .info-value {
+      font-size: 14px;
+      color: #333;
+      font-weight: 500;
+      margin-top: 2px;
+    }
 
-        .btn-secondary {
-            background: #f8f9fa;
-            color: #333;
-            border: 1px solid #e1e5e9;
-        }
+    .actions {
+      margin-top: 25px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
 
-        .btn:hover {
-            opacity: 0.9;
-        }
+    .btn {
+      flex: 1;
+      min-width: 120px;
+      padding: 12px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      transition: opacity 0.3s;
+    }
 
-        .footer {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #999;
-        }
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
 
-        .error {
-            text-align: center;
-            padding: 40px 20px;
-        }
+    .btn-secondary {
+      background: #f8f9fa;
+      color: #333;
+      border: 1px solid #e1e5e9;
+    }
 
-        .error-icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
+    .btn:hover {
+      opacity: 0.9;
+    }
 
-        .error-title {
-            font-size: 20px;
-            color: #333;
-            margin-bottom: 10px;
-        }
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #999;
+    }
 
-        .error-text {
-            color: #666;
-            line-height: 1.5;
-        }
-    </style>
+    .error {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .error-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .error-title {
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .error-text {
+      color: #666;
+      line-height: 1.5;
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <div id="contactContent">
-            <!-- Contact content will be loaded here -->
-        </div>
+  <div class="card">
+    <div id="contactContent">
+      <!-- Contact content will be loaded here -->
     </div>
+  </div>
 
-    <script>
-        function getUrlParams() {
-            const params = new URLSearchParams(window.location.search);
-            return {
-                name: params.get('name') || '',
-                email: params.get('email') || '',
-                phone: params.get('phone') || '',
-                org: params.get('org') || '',
-                title: params.get('title') || '',
-                photo: params.get('photo') || ''
-            };
-        }
+  <script>
+    function getUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        name: params.get('name') || '',
+        email: params.get('email') || '',
+        phone: params.get('phone') || '',
+        org: params.get('org') || '',
+        title: params.get('title') || '',
+        photo: params.get('photo') || '',
+        start: params.get('start') || '',
+        end: params.get('end') || '',
+        status: params.get('status') || 'false'
+      };
+    }
 
-        function displayContact() {
-            const contact = getUrlParams();
-            const contentDiv = document.getElementById('contactContent');
+    function displayContact() {
+      const contact = getUrlParams();
+      const contentDiv = document.getElementById('contactContent');
 
-            // Check if we have at least a name or email
-            if (!contact.name && !contact.email) {
-                contentDiv.innerHTML = `
-                    <div class="error">
-                        <div class="error-icon">🤔</div>
-                        <div class="error-title">No Contact Information</div>
-                        <div class="error-text">
-                            This link doesn't contain valid contact information.<br>
-                            Please make sure you scanned the correct QR code.
-                        </div>
-                    </div>
-                `;
-                return;
-            }
+      if (!contact.name && !contact.email) {
+        contentDiv.innerHTML = `
+          <div class="error">
+            <div class="error-icon">🤔</div>
+            <div class="error-title">No Contact Information</div>
+            <div class="error-text">
+              This link doesn't contain valid contact information.<br>
+              Please make sure you scanned the correct QR code.
+            </div>
+          </div>
+        `;
+        return;
+      }
 
-            // Build contact display
-            let html = `
-                <div class="avatar">
-                    ${contact.photo ? `<img src="${contact.photo}" alt="Profile">` : '👤'}
-                </div>
-                <div class="name">${contact.name || 'Contact'}</div>
-                ${contact.email ? `<div class="email">${contact.email}</div>` : ''}
-                
-                <div class="info">
-            `;
+      let html = `
+        <div class="avatar">
+          ${contact.photo ? `<img src="${contact.photo}" alt="Profile">` : '👤'}
+        </div>
+        <div class="name">${contact.name || 'Contact'}</div>
+      `;
 
-            // Add contact info items
-            if (contact.email) {
-                html += `
-                    <div class="info-item">
-                        <div class="info-icon">✉</div>
-                        <div class="info-text">
-                            <div class="info-label">Email</div>
-                            <div class="info-value">${contact.email}</div>
-                        </div>
-                    </div>
-                `;
-            }
+      // ✅ Membership Status Badge
+      if (contact.status === 'true') {
+        html += `<div class="badge badge-active">✅ Active Member</div>`;
+      } else {
+        html += `<div class="badge badge-inactive">❌ Expired / Not a Member</div>`;
+      }
 
-            if (contact.phone) {
-                html += `
-                    <div class="info-item">
-                        <div class="info-icon">📞</div>
-                        <div class="info-text">
-                            <div class="info-label">Phone</div>
-                            <div class="info-value">${contact.phone}</div>
-                        </div>
-                    </div>
-                `;
-            }
+      if (contact.email) {
+        html += `<div class="email">${contact.email}</div>`;
+      }
 
-            if (contact.org) {
-                html += `
-                    <div class="info-item">
-                        <div class="info-icon">🏢</div>
-                        <div class="info-text">
-                            <div class="info-label">Organization</div>
-                            <div class="info-value">${contact.org}</div>
-                        </div>
-                    </div>
-                `;
-            }
+      html += `<div class="info">`;
 
-            if (contact.title) {
-                html += `
-                    <div class="info-item">
-                        <div class="info-icon">💼</div>
-                        <div class="info-text">
-                            <div class="info-label">Title</div>
-                            <div class="info-value">${contact.title}</div>
-                        </div>
-                    </div>
-                `;
-            }
+      if (contact.email) {
+        html += `
+          <div class="info-item">
+            <div class="info-icon">✉</div>
+            <div class="info-text">
+              <div class="info-label">Email</div>
+              <div class="info-value">${contact.email}</div>
+            </div>
+          </div>
+        `;
+      }
 
-            html += `</div><div class="actions">`;
+      if (contact.phone) {
+        html += `
+          <div class="info-item">
+            <div class="info-icon">📞</div>
+            <div class="info-text">
+              <div class="info-label">Phone</div>
+              <div class="info-value">${contact.phone}</div>
+            </div>
+          </div>
+        `;
+      }
 
-            // Add action buttons
-            if (contact.email) {
-                html += `<a href="mailto:${contact.email}" class="btn btn-primary">Send Email</a>`;
-            }
+      if (contact.org) {
+        html += `
+          <div class="info-item">
+            <div class="info-icon">🏢</div>
+            <div class="info-text">
+              <div class="info-label">Organization</div>
+              <div class="info-value">${contact.org}</div>
+            </div>
+          </div>
+        `;
+      }
 
-            if (contact.phone) {
-                html += `<a href="tel:${contact.phone}" class="btn btn-secondary">Call</a>`;
-            }
+      if (contact.title) {
+        html += `
+          <div class="info-item">
+            <div class="info-icon">💼</div>
+            <div class="info-text">
+              <div class="info-label">Title</div>
+              <div class="info-value">${contact.title}</div>
+            </div>
+          </div>
+        `;
+      }
 
-            // Add save contact button
-            html += `<button onclick="downloadVCard()" class="btn btn-secondary">Save Contact</button>`;
+      if (contact.start) {
+        html += `
+          <div class="info-item">
+            <div class="info-icon">📅</div>
+            <div class="info-text">
+              <div class="info-label">Membership Start</div>
+              <div class="info-value">${contact.start}</div>
+            </div>
+          </div>
+        `;
+      }
 
-            html += `
-                </div>
-                <div class="footer">
-                    Shared via Together Local App
-                </div>
-            `;
+      if (contact.end) {
+        html += `
+          <div class="info-item">
+            <div class="info-icon">📅</div>
+            <div class="info-text">
+              <div class="info-label">Membership End</div>
+              <div class="info-value">${contact.end}</div>
+            </div>
+          </div>
+        `;
+      }
 
-            contentDiv.innerHTML = html;
-        }
+      html += `</div><div class="actions">`;
 
-        function downloadVCard() {
-            const contact = getUrlParams();
-            
-            let vcard = `BEGIN:VCARD
+      if (contact.email) {
+        html += `<a href="mailto:${contact.email}" class="btn btn-primary">Send Email</a>`;
+      }
+
+      if (contact.phone) {
+        html += `<a href="tel:${contact.phone}" class="btn btn-secondary">Call</a>`;
+      }
+
+      html += `<button onclick="downloadVCard()" class="btn btn-secondary">Save Contact</button>`;
+
+      html += `
+        </div>
+        <div class="footer">
+          Shared via Together Local App
+        </div>
+      `;
+
+      contentDiv.innerHTML = html;
+    }
+
+    function downloadVCard() {
+      const contact = getUrlParams();
+      let vcard = `BEGIN:VCARD
 VERSION:3.0
 FN:${contact.name}`;
 
-            if (contact.email) vcard += `\nEMAIL:${contact.email}`;
-            if (contact.phone) vcard += `\nTEL:${contact.phone}`;
-            if (contact.org) vcard += `\nORG:${contact.org}`;
-            if (contact.title) vcard += `\nTITLE:${contact.title}`;
-            
-            vcard += `\nNOTE:Contact shared via Together Local App
+      if (contact.email) vcard += `\nEMAIL:${contact.email}`;
+      if (contact.phone) vcard += `\nTEL:${contact.phone}`;
+      if (contact.org) vcard += `\nORG:${contact.org}`;
+      if (contact.title) vcard += `\nTITLE:${contact.title}`;
+      
+      vcard += `\nNOTE:Contact shared via Together Local App
 END:VCARD`;
 
-            const blob = new Blob([vcard], { type: 'text/vcard' });
-            const url = window.URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `${contact.name || 'contact'}.vcf`;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            window.URL.revokeObjectURL(url);
-        }
+      const blob = new Blob([vcard], { type: 'text/vcard' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${contact.name || 'contact'}.vcf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    }
 
-        // Load contact when page loads
-        window.addEventListener('load', displayContact);
-    </script>
+    window.addEventListener('load', displayContact);
+  </script>
 </body>
 </html>
